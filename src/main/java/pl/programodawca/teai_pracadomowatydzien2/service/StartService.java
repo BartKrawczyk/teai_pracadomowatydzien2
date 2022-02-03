@@ -1,25 +1,19 @@
-package pl.programodawca.teai_pracadomowatydzien2;
-
+package pl.programodawca.teai_pracadomowatydzien2.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.util.Objects;
+import pl.programodawca.teai_pracadomowatydzien2.repository.ProductRepository;
 
 @Service
-@Profile({"Start", "default"})
-public class StartService implements CartValue{
+@Profile({"Start"})
+public class StartService implements ShopService {
 
-    ShopService shopService;
+    @Autowired
+    ProductRepository productRepository;
 
     @Override
-    public void cartSum() {
-        BigDecimal sum = shopService.products.stream().filter(Objects::nonNull).map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
-        System.out.println("------------------------------------------");
-        System.out.println("Wartość produktów w koszyku: " + sum + " zł");
+    public void sum() {
+        System.out.println("Wartość produktów w koszyku: " + productRepository.nettoSum() + " zł netto");
     }
 }
-

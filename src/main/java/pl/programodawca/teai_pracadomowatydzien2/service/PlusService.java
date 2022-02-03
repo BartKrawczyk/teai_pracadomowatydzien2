@@ -1,4 +1,29 @@
-package pl.programodawca.teai_pracadomowatydzien2;
+package pl.programodawca.teai_pracadomowatydzien2.service;
 
-public class PlusService {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
+import pl.programodawca.teai_pracadomowatydzien2.repository.ProductRepository;
+
+@Service
+@Profile({"Plus"})
+public class PlusService extends StartService implements ShopService {
+    @Value("${vat-rate}")
+    private String vatRate;
+
+    @Autowired
+    ProductRepository productRepository;
+
+    @Override
+    public void sum() {
+        plusPrinter(productRepository, vatRate);
+    }
+
+    static void plusPrinter(ProductRepository productRepository, String vatRate) {
+        System.out.println("Wartość netto produktów w koszyku: " + productRepository.nettoSum() + " zł");
+        System.out.println("Stawka VAT " + vatRate);
+        System.out.println("Wartość podatku VAT: " + productRepository.vat(vatRate) + " zł");
+        System.out.println("Wartość produktów z podatkiem VAT: " + productRepository.nettoSum().add(productRepository.vat(vatRate)) + " zł");
+    }
 }

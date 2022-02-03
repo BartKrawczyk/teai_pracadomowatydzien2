@@ -1,4 +1,4 @@
-package pl.programodawca.teai_pracadomowatydzien2;
+package pl.programodawca.teai_pracadomowatydzien2.model;
 
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,6 @@ public class Product {
     }
 
     public Product() {
-
     }
 
     public String getName() {
@@ -37,6 +36,7 @@ public class Product {
     @Override
     public String toString() {
         return name +
-                ", price = " + price + " zł";};
+                ", price = " + price + " zł";
     }
+}
 
