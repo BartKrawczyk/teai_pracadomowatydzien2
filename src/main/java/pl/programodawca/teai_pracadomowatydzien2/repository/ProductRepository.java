@@ -2,7 +2,6 @@ package pl.programodawca.teai_pracadomowatydzien2.repository;
 
 import org.springframework.stereotype.Repository;
 import pl.programodawca.teai_pracadomowatydzien2.model.Product;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -12,17 +11,16 @@ import java.util.Random;
 
 @Repository
 public class ProductRepository {
-    private Product product;
 
-    private static final int minPrice = 50;
-    private static final int maxPrice = 300;
+    private static final int MIN_PRICE = 50;
+    private static final int MAX_PRICE = 300;
 
     public List<Product> products = new ArrayList<>();
 
     public void generateProducts() {
         for (int i = 0; i < 5; i++) {
             Product product = new Product();
-            product.setName("Product" + (i + 1));
+            product.setName("Produkt" + (i + 1));
             product.setPrice(generatePrice());
             products.add(product);
         }
@@ -38,7 +36,7 @@ public class ProductRepository {
 
     private static BigDecimal generatePrice() {
         Random generator = new Random();
-        return BigDecimal.valueOf(generator.nextDouble() * (maxPrice - minPrice) + minPrice).setScale(2, RoundingMode.CEILING);
+        return BigDecimal.valueOf(generator.nextDouble() * (MAX_PRICE - MIN_PRICE) + MIN_PRICE).setScale(2, RoundingMode.CEILING);
     }
 
     public static BigDecimal percentConverter(String string) {

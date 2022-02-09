@@ -1,6 +1,5 @@
 package pl.programodawca.teai_pracadomowatydzien2.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,12 @@ public class ProService implements ShopService {
     @Value("${discount-rate}")
     private String discountRate;
 
-    @Autowired
+
     ProductRepository productRepository;
+
+    public ProService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Override
     public void sum() {

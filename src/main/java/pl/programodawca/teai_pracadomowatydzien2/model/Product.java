@@ -1,7 +1,6 @@
 package pl.programodawca.teai_pracadomowatydzien2.model;
 
 import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 
 @Component
@@ -36,7 +35,7 @@ public class Product {
     @Override
     public String toString() {
         return name +
-                ", price = " + price + " zł";
+                ", cena = " + price + " zł";
     }
 }
 
